@@ -1,0 +1,489 @@
+/* ==========================================================================
+   Laskavě — Masážní salon (Zuzana Klazarová)
+   Styling, Design Tokens, Typography & Animations
+   ========================================================================== */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Base CSS Variables & Palette */
+:root {
+  --color-cream-light: #FAF6F0;
+  --color-cream: #F3EDE4;
+  --color-sand: #E8DEC8;
+  --color-sand-dark: #D4C5A9;
+  --color-brown-light: #6C5D53;
+  --color-brown: #4A3B32;
+  --color-brown-dark: #3A2E26;
+  --color-brown-deep: #251C17;
+  --color-gold: #C69B59;
+  --color-gold-light: #DFBD83;
+  --color-gold-dark: #9F7635;
+  --color-sage: #4E6B5D;
+  --color-sage-light: #E8EFEA;
+  --color-white-glass: rgba(255, 255, 255, 0.82);
+  --color-cream-glass: rgba(250, 246, 240, 0.88);
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-quote: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --shadow-subtle: 0 4px 20px -2px rgba(58, 46, 38, 0.05);
+  --shadow-card: 0 10px 30px -5px rgba(58, 46, 38, 0.08);
+  --shadow-hover: 0 20px 40px -10px rgba(58, 46, 38, 0.14);
+  --shadow-gold: 0 8px 25px -4px rgba(198, 155, 89, 0.35);
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 9999px;
+}
+
+/* Reset & Document defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-cream-light);
+  color: var(--color-brown-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--color-cream-light);
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(223, 189, 131, 0.08) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(78, 107, 93, 0.06) 0px, transparent 50%);
+  background-attachment: fixed;
+  line-height: 1.7;
+}
+
+/* Utility Font Families */
+.font-serif-display {
+  font-family: var(--font-display);
+}
+
+.font-serif-quote {
+  font-family: var(--font-quote);
+}
+
+.font-sans-clean {
+  font-family: var(--font-sans);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-sand-dark);
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-cream-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* ==========================================================================
+   Header & Sticky Navigation
+   ========================================================================== */
+.header-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: transparent;
+  padding: 1.5rem 0;
+}
+
+.header-nav.scrolled {
+  background-color: var(--color-cream-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(198, 155, 89, 0.18);
+  box-shadow: 0 4px 24px -6px rgba(58, 46, 38, 0.08);
+}
+
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  color: var(--color-brown-dark);
+  transition: color 0.3s ease;
+  padding: 0.35rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
+}
+
+.nav-link:hover {
+  color: var(--color-gold-dark);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Buttons & Interactive Elements
+   ========================================================================== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, var(--color-brown-dark), var(--color-brown));
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.95rem 2rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(223, 189, 131, 0.25);
+  box-shadow: var(--shadow-card);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--color-brown-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.95rem 1.8rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-sand-dark);
+  backdrop-filter: blur(8px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  background: #FFFFFF;
+  border-color: var(--color-gold);
+  color: var(--color-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+/* ==========================================================================
+   Cards, Glassmorphism & Shadows
+   ========================================================================== */
+.glass-card {
+  background: var(--color-white-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(198, 155, 89, 0.4);
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-gold-light), var(--color-gold));
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Atmospheric Photo Grid & Lightbox
+   ========================================================================== */
+.photo-thumb {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  cursor: zoom-in;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: var(--color-sand);
+  border: 1px solid rgba(198, 155, 89, 0.15);
+}
+
+.photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.photo-thumb:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+  border-color: var(--color-gold);
+}
+
+.photo-thumb:hover img {
+  transform: scale(1.06);
+}
+
+.photo-thumb .photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(37, 28, 23, 0.55), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem;
+  color: #FFFFFF;
+}
+
+.photo-thumb:hover .photo-overlay {
+  opacity: 1;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(25, 19, 15, 0.88);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  max-width: 1100px;
+  max-height: 88vh;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(223, 189, 131, 0.3);
+  transform: scale(0.95);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lightbox-modal.active .lightbox-content {
+  transform: scale(1);
+}
+
+/* ==========================================================================
+   Joy Pills ("Co mi dělá radost")
+   ========================================================================== */
+.joy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-sand-dark);
+  color: var(--color-brown-dark);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--radius-pill);
+  transition: all 0.3s ease;
+  cursor: default;
+  box-shadow: 0 2px 8px -2px rgba(58, 46, 38, 0.04);
+}
+
+.joy-pill:hover {
+  background-color: var(--color-cream);
+  border-color: var(--color-gold);
+  color: var(--color-gold-dark);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: var(--shadow-card);
+}
+
+/* ==========================================================================
+   Scroll Reveal Animations (Intersection Observer)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-100 { transition-delay: 100ms; }
+.reveal-delay-200 { transition-delay: 200ms; }
+.reveal-delay-300 { transition-delay: 300ms; }
+.reveal-delay-400 { transition-delay: 400ms; }
+
+/* ==========================================================================
+   Booking iframe container (Cal.com)
+   ========================================================================== */
+.reservio-wrapper {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+@media (min-width: 1024px) {
+  .reservio-wrapper {
+    height: 100%;
+    min-height: 560px;
+  }
+}
+
+.reservio-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(198, 155, 89, 0.2);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* ==========================================================================
+   Mobile Menu Overlay
+   ========================================================================== */
+.mobile-menu-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: var(--color-cream-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.mobile-menu-drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Accent badges & quotes */
+.gold-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgba(198, 155, 89, 0.12);
+  color: var(--color-gold-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(198, 155, 89, 0.25);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  :root {
+    --radius-lg: 20px;
+    --radius-md: 16px;
+  }
+  
+  .reservio-wrapper {
+    height: 560px;
+  }
+}
+
+/* Custom Scrollbar for Modal */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(232, 222, 200, 0.3);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(198, 155, 89, 0.5);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(198, 155, 89, 0.8);
+}

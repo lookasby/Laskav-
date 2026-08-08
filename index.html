@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laskavě — Masážní salon | Zuzana Klazarová</title>
+    <meta name="description" content="Dopřejte svému tělu i mysli laskavou péči. V jemnosti a hloubce je síla. Masážní salon Laskavě — celostní péče, ájurvéda a mohendžodáro v přírodním prostředí." />
+    <meta name="keywords" content="masáže, Laskavě, masážní salon, Zuzana Klazarová, ájurvéda, mohendžodáro, relaxace, celotělová masáž, wellness" />
+    <meta name="author" content="Laskavě - Zuzana Klazarová" />
+    
+    <!-- External CSS Styling -->
+    <link rel="stylesheet" href="style.css" />
+    
+    <!-- Tailwind CSS via official CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons Library -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- External Interactive JavaScript -->
+    <script src="script.js" defer></script>
+  </head>
+  <body class="bg-[#FAF6F0] text-[#3A2E26] antialiased selection:bg-[#DFBD83]/30 selection:text-[#3A2E26]">
+    
+    <!-- ======================================================================
+         FIXED HEADER & NAVIGATION (Sticky Header with Glass Effect)
+         ====================================================================== -->
+    <header id="header-nav" class="header-nav">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
+        
+        <!-- Logo -->
+        <a href="#uvod" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 rounded-full bg-[#E8DEC8] flex items-center justify-center border border-[#C69B59]/40 shadow-sm group-hover:scale-105 transition-transform duration-300">
+            <i data-lucide="sparkles" class="w-5 h-5 text-[#9F7635]"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-serif-display text-2xl sm:text-3xl font-medium tracking-wide text-[#3A2E26] group-hover:text-[#9F7635] transition-colors duration-300">
+              Laskavě
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.22em] text-[#6C5D53] font-medium -mt-1">
+              masážní salon
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8 lg:gap-10">
+          <a href="#uvod" class="nav-link text-sm uppercase tracking-wider font-medium">Úvod</a>
+          <a href="#sluzby" class="nav-link text-sm uppercase tracking-wider font-medium">Služby</a>
+          <a href="#o-mne" class="nav-link text-sm uppercase tracking-wider font-medium">O mně</a>
+          <a href="#recenze" class="nav-link text-sm uppercase tracking-wider font-medium">Recenze</a>
+          <a href="#kontakt" class="nav-link text-sm uppercase tracking-wider font-medium">Kontakt</a>
+        </nav>
+
+        <!-- CTA Button -> Scroll to Reservation -->
+        <div class="hidden sm:flex items-center gap-4">
+          <a href="#rezervace" class="btn-primary text-sm">
+            <span>Objednat se</span>
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-toggle-btn" class="md:hidden p-2.5 rounded-full bg-[#F3EDE4] border border-[#E8DEC8] text-[#3A2E26] hover:text-[#9F7635] focus:outline-none" aria-label="Otevřít navigaci">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+
+      </div>
+    </header>
+
+    <!-- ======================================================================
+         MOBILE MENU DRAWER
+         ====================================================================== -->
+    <div id="mobile-menu-drawer" class="mobile-menu-drawer">
+      <button id="mobile-menu-close-btn" class="absolute top-6 right-6 p-3 rounded-full bg-[#F3EDE4] border border-[#E8DEC8] text-[#3A2E26] hover:text-[#9F7635]" aria-label="Zavřít navigaci">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      
+      <div class="flex flex-col items-center gap-2 mb-6">
+        <span class="font-serif-display text-3xl font-medium text-[#3A2E26]">Laskavě</span>
+        <span class="text-xs uppercase tracking-[0.2em] text-[#9F7635]">masážní salon</span>
+      </div>
+
+      <nav class="flex flex-col items-center gap-6 text-center">
+        <a href="#uvod" class="mobile-nav-link font-serif-display text-2xl text-[#3A2E26] hover:text-[#9F7635]">Úvod</a>
+        <a href="#sluzby" class="mobile-nav-link font-serif-display text-2xl text-[#3A2E26] hover:text-[#9F7635]">Služby</a>
+        <a href="#o-mne" class="mobile-nav-link font-serif-display text-2xl text-[#3A2E26] hover:text-[#9F7635]">O mně</a>
+        <a href="#recenze" class="mobile-nav-link font-serif-display text-2xl text-[#3A2E26] hover:text-[#9F7635]">Recenze</a>
+        <a href="#kontakt" class="mobile-nav-link font-serif-display text-2xl text-[#3A2E26] hover:text-[#9F7635]">Kontakt</a>
+      </nav>
+
+      <div class="mt-4">
+        <a href="#rezervace" class="btn-primary mobile-nav-link">
+          <span>Chci se objednat</span>
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         HERO SECTION (#uvod)
+         ====================================================================== -->
+    <section id="uvod" class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        
+        <!-- Hero Text Content -->
+        <div class="max-w-4xl mx-auto text-center mb-16 reveal">
+          <!-- Subtle Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8DEC8]/60 border border-[#C69B59]/30 text-[#4A3B32] text-xs uppercase tracking-widest font-semibold mb-6">
+            <i data-lucide="leaf" class="w-3.5 h-3.5 text-[#4E6B5D]"></i>
+            <span>Přírodní wellness & doteková péče</span>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="font-serif-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.15] text-[#251C17] font-medium mb-6">
+            Dopřejte svému tělu i mysli
+            <span class="block italic font-serif-quote text-[#9F7635] font-normal mt-1">
+              laskavou péči
+            </span>
+          </h1>
+
+          <!-- Motto -->
+          <p class="font-serif-quote italic text-xl sm:text-2xl text-[#4A3B32] mb-8 font-medium">
+            „V jemnosti a hloubce je síla.“
+          </p>
+
+          <!-- Atmospheric Description (exact requested copy) -->
+          <p class="text-base sm:text-lg lg:text-xl text-[#6C5D53] max-w-3xl mx-auto leading-relaxed font-normal mb-10">
+            Vítejte v jedinečném prostředí. V přírodě. Tady se ocitnete v tichu. Povzbudíte všechny Vaše smysly. 
+            Co můžete zažít a prožít? <span class="font-semibold text-[#3A2E26]">Autentičnost.</span> 
+            Buďte sami sebou. Kdy jindy než teď. Změna je život a vše přichází v ten správný čas… 
+            <span class="text-[#9F7635] font-medium">Vy jste nejdůležitější.</span>
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#rezervace" class="btn-primary w-full sm:w-auto text-base">
+              <span>Chci se objednat</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a href="#sluzby" class="btn-secondary w-full sm:w-auto text-base">
+              <span>Prohlédnout služby</span>
+              <i data-lucide="sparkles" class="w-4 h-4 text-[#9F7635]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             ATMOSPHERIC PHOTO CAROUSEL (Photos 1.jpg - 7.jpg)
+             ================================================================== -->
+        <div class="relative w-full overflow-hidden reveal reveal-delay-200 group -mx-1 sm:-mx-2" id="photo-carousel-container">
+          <!-- Navigation Arrows -->
+          <button id="carousel-prev" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-[#3A2E26] p-2 sm:p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none">
+            <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+          </button>
+          <button id="carousel-next" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-[#3A2E26] p-2 sm:p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none">
+            <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+          </button>
+
+          <div class="flex transition-transform duration-700 ease-in-out" id="carousel-track">
+            
+            <!-- Photo 1 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
+              <div class="photo-thumb aspect-[3/4] h-full rounded-2xl overflow-hidden" data-caption="Masážní prostor v tichu, na pohodlné matraci na zemi s krystaly">
+                <img src="obrazky/1.jpg" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80';"
+                     alt="Pohled do masážního salonu Laskavě na pohodlnou matraci a krystaly"
+                     loading="lazy" class="w-full h-full object-cover" />
+                <div class="photo-overlay">
+                  <div>
+                    <span class="text-xs uppercase tracking-widest text-[#DFBD83] font-semibold block mb-1">Prostor klidu</span>
+                    <p class="font-serif-display text-lg text-white">Celostní péče na matraci na zemi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
+              <div class="photo-thumb aspect-[3/4] h-full rounded-2xl overflow-hidden" data-caption="Přírodní materiály, zlaté detaily a svěží květiny v salonu">
+                <img src="obrazky/2.jpg" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80';"
+                     alt="Elegantní detail umyvadla a květin v salonu Laskavě"
+                     loading="lazy" class="w-full h-full object-cover" />
+                <div class="photo-overlay">
+                  <span class="text-xs uppercase tracking-wider text-white font-medium">Harmonie a detail</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
+              <div class="photo-thumb aspect-[3/4] h-full rounded-2xl overflow-hidden" data-caption="Zuzana Klazarová – s úsměvem a teplými éterickými oleji">
+                <img src="obrazky/3.jpg" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80';"
+                     alt="Zuzana Klazarová s éterickými oleji v masážní oáze"
+                     loading="lazy" class="w-full h-full object-cover" />
+                <div class="photo-overlay">
+                  <span class="text-xs uppercase tracking-wider text-white font-medium">Osobní přístup</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
+              <div class="photo-thumb aspect-[3/4] h-full rounded-2xl overflow-hidden" data-caption="Laskavý dotek teplých ájurvédských olejů">
+                <img src="obrazky/4.jpg" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1608248597359-0e6d526a6e38?auto=format&fit=crop&w=800&q=80';"
+                     alt="Aplikace teplého bylinného oleje z kapátka"
+                     loading="lazy" class="w-full h-full object-cover" />
+                <div class="photo-overlay">
+                  <span class="text-xs uppercase tracking-wider text-white font-medium">Teplé oleje</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 5 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
+              <div class="photo-thumb aspect-[3/4] h-full rounded-2xl overflow-hidden" data-caption="Výběr éterických olejů a krystalů před rituálem">
+                <img src="obrazky/5.jpg" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80';"
+                     alt="Masérka u matrace s výběrem olejů a krystalů"
+                     loading="lazy" class="w-full h-full object-cover" />
+                <div class="photo-overlay">
+                  <span class="text-xs uppercase tracking-wider text-white font-medium">Rituál vůní</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 6 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
+              <div class="photo-thumb aspect-[3/4] h-full rounded-2xl overflow-hidden" data-caption="České značky olejů, péče od hlavy až k patě">
+                <img src="obrazky/6.jpg" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=800&q=80';"
+                     alt="Detail přípravy aroma oleje do dlaně"
+                     loading="lazy" class="w-full h-full object-cover" />
+                <div class="photo-overlay">
+                  <div>
+                    <span class="text-xs uppercase tracking-widest text-[#DFBD83] font-semibold block mb-1">Péče o smysly</span>
+                    <p class="font-serif-display text-lg text-white">Podporuji kvalitní české značky olejů</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 7 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
+              <div class="photo-thumb aspect-[3/4] h-full rounded-2xl overflow-hidden" data-caption="Pohodlí, klid a čas jen pro Vás">
+                <img src="obrazky/7.jpg" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80';"
+                     alt="Pohled do klidného masážního prostředí Laskavě"
+                     loading="lazy" class="w-full h-full object-cover" />
+                <div class="photo-overlay">
+                  <div>
+                    <span class="text-xs uppercase tracking-widest text-[#DFBD83] font-semibold block mb-1">Ticho a přítomnost</span>
+                    <p class="font-serif-display text-lg text-white">Čas na hluboký odpočinek a uvolnění</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3 SERVICES SECTION (#sluzby)
+         ====================================================================== -->
+    <section id="sluzby" class="py-24 bg-[#F3EDE4]/80 border-y border-[#E8DEC8]">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+          <span class="gold-badge mb-4">
+            <i data-lucide="heart-handshake" class="w-3.5 h-3.5"></i>
+            <span>Nabídka péče</span>
+          </span>
+          <h2 class="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#251C17] font-medium mb-4">
+            Naše masážní rituály & služby
+          </h2>
+          <p class="text-[#6C5D53] text-base sm:text-lg">
+            Každé ošetření je celostní péčí pro tělo i duši. Zahrnuje úvodní posezení u teplého čaje, anamnézu, 
+            aplikaci nahřátých olejů a závěrečný odpočinek s možností výběru výkladové karty.
+          </p>
+        </div>
+
+        <!-- 3 Columns Layout (responsive grid) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Card 1: Celotělová olejová masáž -->
+          <div class="glass-card service-card p-8 sm:p-10 reveal reveal-delay-100 flex flex-col">
+            <div class="flex-grow">
+              <!-- Category badge -->
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-[#9F7635] bg-[#E8DEC8]/50 px-3 py-1 rounded-full">
+                  Celotělová relaxace
+                </span>
+                <i data-lucide="feather" class="w-6 h-6 text-[#9F7635]"></i>
+              </div>
+
+              <!-- Title -->
+              <h3 class="font-serif-display text-2xl sm:text-3xl text-[#251C17] font-medium mb-4">
+                Celotělová olejová masáž
+              </h3>
+
+              <!-- Benefits description -->
+              <p class="text-[#6C5D53] text-sm sm:text-base leading-relaxed mb-6">
+                Komplexní celotělová péče teplým olejem od prstů na nohách až po konečky vlasů. Dlouhé a pomalé tahy 
+                zklidňují nervový systém a přinášejí hluboké uvolnění.
+              </p>
+
+              <!-- Key points -->
+              <ul class="space-y-2.5 text-sm text-[#4A3B32] mb-8">
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-1 shrink-0"></i>
+                  <span>Úvodní čaj a naladění před masáží</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-1 shrink-0"></i>
+                  <span>Dlouhé pomalé tahy teplým olejem</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-1 shrink-0"></i>
+                  <span>Hluboké uvolnění celého těla</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Length, Price & Button at bottom -->
+            <div class="pt-6 border-t border-[#E8DEC8]/80 flex flex-col gap-5 mt-auto">
+              <div>
+                <span class="block text-xs uppercase tracking-wider text-[#6C5D53] mb-1">Délka & cena</span>
+                <div class="flex items-baseline justify-between">
+                  <span class="font-serif-display text-2xl font-semibold text-[#251C17]">60 min</span>
+                  <span class="text-[#9F7635] font-serif-display text-2xl font-medium">1 200 Kč</span>
+                </div>
+              </div>
+              <a href="#rezervace" 
+                 class="service-order-btn btn-secondary text-sm w-full justify-center py-3" 
+                 data-service-name="Celotělová olejová masáž (60 min)">
+                <span>Objednat</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: Indická masáž hlavy -->
+          <div class="glass-card service-card p-8 sm:p-10 reveal reveal-delay-200 flex flex-col">
+            <div class="flex-grow">
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-[#9F7635] bg-[#E8DEC8]/50 px-3 py-1 rounded-full">
+                  Úleva od stresu
+                </span>
+                <i data-lucide="sun" class="w-6 h-6 text-[#9F7635]"></i>
+              </div>
+
+              <h3 class="font-serif-display text-2xl sm:text-3xl text-[#251C17] font-medium mb-4">
+                Indická masáž hlavy
+              </h3>
+
+              <p class="text-[#6C5D53] text-sm sm:text-base leading-relaxed mb-6">
+                Jemná, uklidňující masáž hlavy, šíje a ramen, která uvolňuje napětí, zmírňuje stres a podporuje 
+                jasnou mysl. Tradiční technika pro hlubokou relaxaci.
+              </p>
+
+              <ul class="space-y-2.5 text-sm text-[#4A3B32] mb-8">
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-1 shrink-0"></i>
+                  <span>Uvolnění napětí krční páteře a ramen</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-1 shrink-0"></i>
+                  <span>Stimulace vlasové pokožky</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-1 shrink-0"></i>
+                  <span>Zklidnění mysli a podpora spánku</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-6 border-t border-[#E8DEC8]/80 flex flex-col gap-5 mt-auto">
+              <div>
+                <span class="block text-xs uppercase tracking-wider text-[#6C5D53] mb-1">Délka & cena</span>
+                <div class="flex items-baseline justify-between">
+                  <span class="font-serif-display text-2xl font-semibold text-[#251C17]">45 min</span>
+                  <span class="text-[#9F7635] font-serif-display text-2xl font-medium">900 Kč</span>
+                </div>
+              </div>
+              <a href="#rezervace" 
+                 class="service-order-btn btn-secondary text-sm w-full justify-center py-3" 
+                 data-service-name="Indická masáž hlavy (45 min)">
+                <span>Objednat</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3: Vědomé taneční párty pro ženy -->
+          <div class="glass-card service-card p-8 sm:p-10 reveal reveal-delay-300 flex flex-col">
+            <div class="flex-grow">
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-[#4E6B5D] bg-[#E8EFEA] px-3 py-1 rounded-full">
+                  Pohyb & sdílení
+                </span>
+                <i data-lucide="flower-2" class="w-6 h-6 text-[#4E6B5D]"></i>
+              </div>
+
+              <h3 class="font-serif-display text-2xl sm:text-3xl text-[#251C17] font-medium mb-4">
+                Vědomé taneční párty pro ženy
+              </h3>
+
+              <p class="text-[#6C5D53] text-sm sm:text-base leading-relaxed mb-6">
+                Bezpečný prostor pro svobodný pohyb, vyjádření emocí a propojení se sebou samou i s ostatními 
+                ženami. Tanec bez hodnocení, jen čistá radost.
+              </p>
+
+              <ul class="space-y-2.5 text-sm text-[#4A3B32] mb-8">
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-1 shrink-0"></i>
+                  <span>Intuitivní a svobodný tanec</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-1 shrink-0"></i>
+                  <span>Ženský kruh a vzájemná podpora</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-1 shrink-0"></i>
+                  <span>Uvolnění těla skrze vědomý pohyb</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-6 border-t border-[#E8DEC8]/80 flex flex-col gap-5 mt-auto">
+              <div>
+                <span class="block text-xs uppercase tracking-wider text-[#6C5D53] mb-1">Délka & cena</span>
+                <div class="flex items-baseline justify-between">
+                  <span class="font-serif-display text-2xl font-semibold text-[#251C17]">120 min</span>
+                  <span class="text-[#9F7635] font-serif-display text-2xl font-medium">500 Kč</span>
+                </div>
+              </div>
+              <a href="#rezervace" 
+                 class="service-order-btn btn-secondary text-sm w-full justify-center py-3" 
+                 data-service-name="Vědomé taneční párty pro ženy (120 min)">
+                <span>Objednat</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Service Footer note -->
+        <div class="mt-12 text-center text-sm text-[#6C5D53] reveal">
+          <p class="inline-flex items-center gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-[#9F7635]"></i>
+            <span>Nechcete se svlékat? Je to možné – přes oblečení a šátek se s laskavostí pověnuji celému Vašemu tělu.</span>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ABOUT ME SECTION (#o-mne)
+         ====================================================================== -->
+    <section id="o-mne" class="py-24 bg-[#F3EDE4]/80 border-t border-[#E8DEC8]">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <!-- Left Column: Portrait Photo 8.jpeg -->
+          <div class="lg:col-span-5 reveal">
+            <div class="portrait-thumb relative rounded-3xl overflow-hidden shadow-xl border-2 border-[#C69B59]/30 bg-[#E8DEC8] aspect-[3/4] cursor-zoom-in group" data-caption="Zuzana Klazarová – masérka, zdravotní sestra a mentorka">
+              <img src="obrazky/8.jpg" 
+                   onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80';"
+                   alt="Zuzana Klazarová - masérka a mentorka ženských meditací"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                   loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#251C17]/70 via-transparent to-transparent flex items-end p-8">
+                <div class="text-white">
+                  <span class="text-xs uppercase tracking-widest text-[#DFBD83] font-semibold block mb-1">Vaše masérka</span>
+                  <h3 class="font-serif-display text-2xl font-medium">Zuzana Klazarová</h3>
+                  <p class="text-xs text-white/80 mt-0.5">Zdravotní sestra & mentorka Mohendžodáro</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quote badge below photo -->
+            <div class="mt-6 p-6 rounded-2xl bg-white/70 backdrop-blur-md border border-[#E8DEC8] shadow-sm text-center">
+              <p class="font-serif-quote italic text-xl text-black font-medium">
+                „Raději se vyjadřuji akcí, činem a tělem než slovy. Vnímám člověka jako celek — tělo s duší a myslí.“
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column: Zuzana's Authentic Story -->
+          <div class="lg:col-span-7 space-y-6 reveal reveal-delay-200">
+            
+            <span class="gold-badge">
+              <i data-lucide="user" class="w-3.5 h-3.5"></i>
+              <span>Příběh & filozofie</span>
+            </span>
+
+            <h2 class="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#251C17] font-medium">
+              V jemnosti a hloubce je síla
+            </h2>
+
+            <!-- Lead paragraph -->
+            <p class="text-lg text-black font-medium leading-relaxed">
+              Jsem Žena, matka dvou dcer, manželka skvělého muže... Vše přichází v ten správný okamžik. 
+              Jako i role zdravotní sestry, která mě provázela spoustu let. Rodinný život nás zavál z velkého města 
+              do klidu, tak jak jsme si přáli… do prostorného domu v přírodě, kde se nabízí tiché místo pro péči.
+            </p>
+
+            <!-- Story Body -->
+            <div class="space-y-4 text-[#6C5D53] text-base leading-relaxed">
+              <p>
+                Masíruji, celý život je mi toto téma blízké. Snad i proto, že se raději vyjadřuji akcí a dotekem 
+                než slovy. Vnímám člověka jako celek — tělo s duší a myslí. Vše je propojeno a nelze to dělit. 
+                Proto jsou mé masáže <strong class="text-[#3A2E26]">komplexní a celotělové</strong>, od prstů na nohách 
+                až po konečky vlasů.
+              </p>
+
+              <p>
+                Při příchodu posedíme v pohodlném křesílku a u teplého čaje probereme Vaše přání a anamnézu. 
+                Nabízím masáže teplým olejem, tahy jsou dlouhé a poměrně pomalé. Velmi uklidňující a relaxační. 
+                <strong class="text-[#3A2E26]">Proč masíruji na matraci na zemi?</strong> Je mi to bližší a přirozenější. 
+                A pokud se nechcete svlékat, pečuji o Vás i přes oblečení a šátek.
+              </p>
+
+              <p>
+                Věnuji se také <strong class="text-[#3A2E26]">Mohendžodáru — Tantra józe pro ženy</strong> a ájurvédě, 
+                nauce o dlouhověkosti. Užívám kvalitní oleje podle ročního období (sezamový, mandlový, třezalkový) 
+                a s láskou podporuji české značky.
+              </p>
+            </div>
+
+            <!-- "Co mi dělá radost" Interactive Joy Pills -->
+            <div class="pt-4">
+              <h3 class="text-sm uppercase tracking-widest text-[#9F7635] font-semibold mb-4">
+                Co mi dělá radost v životě:
+              </h3>
+              <div class="flex flex-wrap gap-2.5">
+                <span class="joy-pill">
+                  <i data-lucide="flower" class="w-4 h-4 text-[#9F7635]"></i>
+                  <span>Levandule i třezalka v olejíčku</span>
+                </span>
+                <span class="joy-pill">
+                  <i data-lucide="gem" class="w-4 h-4 text-[#9F7635]"></i>
+                  <span>Minerály a krystaly</span>
+                </span>
+                <span class="joy-pill">
+                  <i data-lucide="heart" class="w-4 h-4 text-[#9F7635]"></i>
+                  <span>Dětské pohlazení</span>
+                </span>
+                <span class="joy-pill">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-[#9F7635]"></i>
+                  <span>Tanec & pohyb</span>
+                </span>
+                <span class="joy-pill">
+                  <i data-lucide="sun" class="w-4 h-4 text-[#9F7635]"></i>
+                  <span>Slunce ale i déšť</span>
+                </span>
+                <span class="joy-pill">
+                  <i data-lucide="book-open" class="w-4 h-4 text-[#9F7635]"></i>
+                  <span>Výkladové karty</span>
+                </span>
+                <span class="joy-pill">
+                  <i data-lucide="users" class="w-4 h-4 text-[#9F7635]"></i>
+                  <span>Milí lidé</span>
+                </span>
+                <span class="joy-pill">
+                  <i data-lucide="coffee" class="w-4 h-4 text-[#9F7635]"></i>
+                  <span>Kvalitní čokoláda</span>
+                </span>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         REVIEWS SECTION (#recenze)
+         ====================================================================== -->
+    <section id="recenze" class="py-24 bg-[#FAF6F0] overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+          <span class="gold-badge mb-4">
+            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+            <span>Svědectví klientů</span>
+          </span>
+          <h2 class="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#251C17] font-medium mb-4">
+            Slova od těch, kteří zažili dotek
+          </h2>
+          <p class="text-[#6C5D53] text-base sm:text-lg">
+            Každá návštěva je osobním příběhem návratu ke klidu a vnitřní harmonii.
+          </p>
+        </div>
+
+        <!-- Review Carousel -->
+        <div class="relative w-full reveal reveal-delay-200 group -mx-3 sm:-mx-4 overflow-hidden" id="review-carousel-container">
+          <!-- Navigation Arrows -->
+          <button id="review-carousel-prev" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-[#3A2E26] p-2 sm:p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none">
+            <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+          </button>
+          <button id="review-carousel-next" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-[#3A2E26] p-2 sm:p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none">
+            <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+          </button>
+
+          <div class="flex transition-transform duration-700 ease-in-out" id="review-carousel-track">
+            
+            <!-- Review 1 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-3 sm:px-4 flex">
+              <div class="glass-card p-8 flex flex-col justify-between w-full h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-[#C69B59] mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                  </div>
+                  <p class="review-text font-serif-quote italic text-base text-[#3A2E26] leading-relaxed mb-6 line-clamp-4 cursor-pointer transition-all duration-300" title="Klikněte pro zobrazení celé recenze">
+                    „Masáž u Zuzky je velmi jemný zážitek s velkou silou. Citlivě reaguje na potřeby i potíže člověka, který k ní přichází. Jako psychoterapeutka se ráda na Zuzku odkážu, protože vím, že člověk bude v empatických rukou. Dokáže se velmi dobře naladit.“
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 pt-6 border-t border-[#E8DEC8]/80 mt-auto">
+                  <div class="w-10 h-10 rounded-full bg-[#E8DEC8] flex items-center justify-center text-[#9F7635] font-serif-display font-semibold">L</div>
+                  <div>
+                    <h4 class="font-semibold text-sm text-[#251C17]">Paní Lucie</h4>
+                    <p class="text-xs text-[#6C5D53]">olejová masáž celého těla</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-3 sm:px-4 flex">
+              <div class="glass-card p-8 flex flex-col justify-between w-full h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-[#C69B59] mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                  </div>
+                  <p class="review-text font-serif-quote italic text-base text-[#3A2E26] leading-relaxed mb-6 line-clamp-4 cursor-pointer transition-all duration-300" title="Klikněte pro zobrazení celé recenze">
+                    „K Zuzce docházím každý měsíc, jsem v nejlepších rukách a ráda se vracím...“
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 pt-6 border-t border-[#E8DEC8]/80 mt-auto">
+                  <div class="w-10 h-10 rounded-full bg-[#E8DEC8] flex items-center justify-center text-[#9F7635] font-serif-display font-semibold">M</div>
+                  <div>
+                    <h4 class="font-semibold text-sm text-[#251C17]">Paní Mirka</h4>
+                    <p class="text-xs text-[#6C5D53]">olejová masáž zad, šíje a rukou</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-3 sm:px-4 flex">
+              <div class="glass-card p-8 flex flex-col justify-between w-full h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-[#C69B59] mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                  </div>
+                  <p class="review-text font-serif-quote italic text-base text-[#3A2E26] leading-relaxed mb-6 line-clamp-4 cursor-pointer transition-all duration-300" title="Klikněte pro zobrazení celé recenze">
+                    „Při masáži jsem si hezky odpočinul a masérna samotná působí útulným rodinným dojmem.“
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 pt-6 border-t border-[#E8DEC8]/80 mt-auto">
+                  <div class="w-10 h-10 rounded-full bg-[#E8DEC8] flex items-center justify-center text-[#9F7635] font-serif-display font-semibold">Z</div>
+                  <div>
+                    <h4 class="font-semibold text-sm text-[#251C17]">Pan Zdeněk</h4>
+                    <p class="text-xs text-[#6C5D53]">celotělová olejová masáž</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-3 sm:px-4 flex">
+              <div class="glass-card p-8 flex flex-col justify-between w-full h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-[#C69B59] mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                  </div>
+                  <p class="review-text font-serif-quote italic text-base text-[#3A2E26] leading-relaxed mb-6 line-clamp-4 cursor-pointer transition-all duration-300" title="Klikněte pro zobrazení celé recenze">
+                    „Masáže u Zuzky vřele doporučuji. Je to dokonalý relax pro celé tělo i mysl. Příjemná atmosféra, hudba, vůně... Zuzka je moc milá a při své práci velice pečlivá.“
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 pt-6 border-t border-[#E8DEC8]/80 mt-auto">
+                  <div class="w-10 h-10 rounded-full bg-[#E8DEC8] flex items-center justify-center text-[#9F7635] font-serif-display font-semibold">M</div>
+                  <div>
+                    <h4 class="font-semibold text-sm text-[#251C17]">Paní Martina</h4>
+                    <p class="text-xs text-[#6C5D53]">celotělová olejová masáž</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-3 sm:px-4 flex">
+              <div class="glass-card p-8 flex flex-col justify-between w-full h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-[#C69B59] mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                  </div>
+                  <p class="review-text font-serif-quote italic text-base text-[#3A2E26] leading-relaxed mb-6 line-clamp-4 cursor-pointer transition-all duration-300" title="Klikněte pro zobrazení celé recenze">
+                    „...krásný zážitek v krásné přírodě... děkuji :-)“
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 pt-6 border-t border-[#E8DEC8]/80 mt-auto">
+                  <div class="w-10 h-10 rounded-full bg-[#E8DEC8] flex items-center justify-center text-[#9F7635] font-serif-display font-semibold">M</div>
+                  <div>
+                    <h4 class="font-semibold text-sm text-[#251C17]">Paní Martina</h4>
+                    <p class="text-xs text-[#6C5D53]">Vědomé taneční párty pro ženy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 6 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-3 sm:px-4 flex">
+              <div class="glass-card p-8 flex flex-col justify-between w-full h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-[#C69B59] mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                  </div>
+                  <p class="review-text font-serif-quote italic text-base text-[#3A2E26] leading-relaxed mb-6 line-clamp-4 cursor-pointer transition-all duration-300" title="Klikněte pro zobrazení celé recenze">
+                    „Vědomá taneční párty je pro mě ta nejlepší pohybová i oduševnělá "záležitost". Zuzka vždy připraví skvělou atmosféru a zvláště venku, párty neměla chybku. Nádherná hudba, do toho větřík a zpěv ptáčků z lesa.“
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 pt-6 border-t border-[#E8DEC8]/80 mt-auto">
+                  <div class="w-10 h-10 rounded-full bg-[#E8DEC8] flex items-center justify-center text-[#9F7635] font-serif-display font-semibold">A</div>
+                  <div>
+                    <h4 class="font-semibold text-sm text-[#251C17]">Paní Alena</h4>
+                    <p class="text-xs text-[#6C5D53]">Vědomé taneční párty pro ženy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 7 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-3 sm:px-4 flex">
+              <div class="glass-card p-8 flex flex-col justify-between w-full h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-[#C69B59] mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                  </div>
+                  <p class="review-text font-serif-quote italic text-base text-[#3A2E26] leading-relaxed mb-6 line-clamp-4 cursor-pointer transition-all duration-300" title="Klikněte pro zobrazení celé recenze">
+                    „U paní Klazarové jsem byla na relaxační masáži opakovaně. Po první návštěvě jsem byla tak mile překvapena, že jsem se hned objednala znovu. Velkou roli hraje její laskavý a milý přístup, stejně jako klidné a tiché prostředí, ve kterém se člověk cítí příjemně. Samotnou masáž bych přirovnala k malé rajské zahradě-celou dobu jsem se cítila uvolněná, spokojená. Atmosféru doplňuje jemná relaxační hudba. Po masáži lze posedět v pohodlném křesílku a vychutnat si šálek bylinkového čaje. Cena je adekvátní a odpovídá kvalitě poskytované péče. Nevzpomínám si, kdy jsem si naposledy dopřála větší laskavost sama k sobě než právě masáž u Zuzky. Moc děkuji a všem ji ze srdce doporučuji.“
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 pt-6 border-t border-[#E8DEC8]/80 mt-auto">
+                  <div class="w-10 h-10 rounded-full bg-[#E8DEC8] flex items-center justify-center text-[#9F7635] font-serif-display font-semibold">J</div>
+                  <div>
+                    <h4 class="font-semibold text-sm text-[#251C17]">Paní Jana</h4>
+                    <p class="text-xs text-[#6C5D53]">masáž celého těla</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 8 -->
+            <div class="w-full md:w-1/3 flex-shrink-0 px-3 sm:px-4 flex">
+              <div class="glass-card p-8 flex flex-col justify-between w-full h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-[#C69B59] mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                  </div>
+                  <p class="review-text font-serif-quote italic text-base text-[#3A2E26] leading-relaxed mb-6 line-clamp-4 cursor-pointer transition-all duration-300" title="Klikněte pro zobrazení celé recenze">
+                    „Skvělá péče při stresu ...“
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 pt-6 border-t border-[#E8DEC8]/80 mt-auto">
+                  <div class="w-10 h-10 rounded-full bg-[#E8DEC8] flex items-center justify-center text-[#9F7635] font-serif-display font-semibold">M</div>
+                  <div>
+                    <h4 class="font-semibold text-sm text-[#251C17]">Pan Martin</h4>
+                    <p class="text-xs text-[#6C5D53]">Indická masáž hlavy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         RESERVIO BOOKING SECTION (#rezervace)
+         ================================================================== -->
+    <section id="rezervace" class="py-24 bg-[#FAF6F0]">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+          <span class="gold-badge mb-4">
+            <i data-lucide="calendar-check" class="w-3.5 h-3.5"></i>
+            <span>Online rezervace</span>
+          </span>
+          <h2 class="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#251C17] font-medium mb-4">
+            Vyberte si svůj čas pro sebe
+          </h2>
+          <p class="text-[#6C5D53] text-base sm:text-lg">
+            Objednejte se pohodlně online v rezervačním kalendáři.
+          </p>
+        </div>
+
+        <!-- Cal.com Calendar Iframe Wrapper -->
+        <div class="reveal reveal-delay-100 flex flex-col w-full h-[600px] shadow-2xl rounded-2xl overflow-hidden border border-[#E8DEC8]">
+          <!-- Selected Service Notification Banner -->
+          <div id="selected-service-badge" class="hidden items-center gap-2 px-4 py-2 mb-4 rounded-xl bg-[#E8DEC8] border border-[#C69B59] text-xs font-semibold text-[#3A2E26] mx-4 mt-4">
+            <i data-lucide="check-circle" class="w-4 h-4 text-[#4E6B5D]"></i>
+            <span>Předvolená služba</span>
+          </div>
+          <div class="reservio-wrapper relative flex-1 w-full h-full bg-white">
+            <iframe 
+              id="cal-iframe"
+              src="https://app.cal.com/laskave" 
+              class="w-full h-full border-0 overflow-hidden"
+              title="Rezervační systém Laskavě - Cal.com" scrolling="auto"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         CONTACT & MAP SECTION (#kontakt)
+         ================================================================== -->
+    <section id="kontakt" class="py-24 bg-[#F3EDE4]/80 border-t border-[#E8DEC8]">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        
+        <!-- TWO BLOCKS SIDE BY SIDE (Left: Contact Info, Right: Map) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+          
+          <!-- Left Block (5 columns): Contact details, Opening hours & Socials -->
+          <div class="lg:col-span-5 reveal flex flex-col">
+            <div class="glass-card p-8 sm:p-10 space-y-6 flex-1 flex flex-col justify-between">
+              <h3 class="font-serif-display text-2xl text-[#251C17] font-medium border-b border-[#E8DEC8] pb-4">
+                Kontaktní informace
+              </h3>
+              
+              <!-- Address -->
+              <div class="flex items-start gap-4">
+                <div class="w-11 h-11 rounded-full bg-[#E8DEC8]/60 flex items-center justify-center text-[#9F7635] shrink-0">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-[#6C5D53] font-semibold">Adresa salonu</span>
+                  <p class="font-medium text-[#251C17] mt-0.5">Koječín 33, 582 55 Herálec u Havlíčkova Brodu</p>
+                  <p class="text-sm text-[#6C5D53]">Klidné přírodní prostředí v soukromí</p>
+                  <span class="text-xs text-[#9F7635] block mt-1">Dostupné parkování přímo u domu</span>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex items-start gap-4">
+                <div class="w-11 h-11 rounded-full bg-[#E8DEC8]/60 flex items-center justify-center text-[#9F7635] shrink-0">
+                  <i data-lucide="phone" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-[#6C5D53] font-semibold">Telefon</span>
+                  <a href="tel:+420777000000" class="font-serif-display text-xl font-semibold text-[#251C17] hover:text-[#9F7635] transition-colors">
+                    +420 737 904 012
+                  </a>
+                  <p class="text-xs text-[#6C5D53] mt-0.5">Volání i zprávy na WhatsApp</p>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-start gap-4">
+                <div class="w-11 h-11 rounded-full bg-[#E8DEC8]/60 flex items-center justify-center text-[#9F7635] shrink-0">
+                  <i data-lucide="mail" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-[#6C5D53] font-semibold">E-mail</span>
+                  <a href="mailto:zuzana@laskave.cz" class="font-medium text-[#251C17] hover:text-[#9F7635] transition-colors">
+                    zuzana@laskave.cz
+                  </a>
+                </div>
+              </div>
+
+              <!-- Opening Hours -->
+              <div class="pt-4 border-t border-[#E8DEC8]">
+                <span class="block text-xs uppercase tracking-wider text-[#6C5D53] font-semibold mb-3">
+                  Otevírací doba
+                </span>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between text-[#3A2E26]">
+                    <span>Pondělí – Pátek</span>
+                    <span class="font-medium">9:00 – 19:00</span>
+                  </div>
+                  <div class="flex justify-between text-[#3A2E26]">
+                    <span>Sobota</span>
+                    <span class="font-medium">Zavřeno</span>
+                  </div>
+                  <div class="flex justify-between text-[#6C5D53]">
+                    <span>Neděle</span>
+                    <span class="italic">Zavřeno</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Social links -->
+              <div class="pt-4 border-t border-[#E8DEC8] flex items-center justify-between">
+                <span class="text-xs uppercase tracking-wider text-[#6C5D53] font-semibold">Sledujte nás</span>
+                <div class="flex items-center gap-3">
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full bg-[#E8DEC8]/50 hover:bg-[#C69B59] hover:text-white transition-colors" aria-label="Instagram">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                  </a>
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full bg-[#E8DEC8]/50 hover:bg-[#C69B59] hover:text-white transition-colors" aria-label="Facebook">
+                    <i data-lucide="facebook" class="w-4 h-4"></i>
+                  </a>
+                  <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full bg-[#E8DEC8]/50 hover:bg-[#C69B59] hover:text-white transition-colors" aria-label="WhatsApp">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Block (7 columns): Map -->
+          <div class="lg:col-span-7 reveal reveal-delay-200 flex flex-col">
+            <div class="glass-card flex-1 flex flex-col p-2 overflow-hidden relative min-h-[400px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6141.976561087412!2d15.487683625064353!3d49.542395138812715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470d023d359ef735%3A0xb023b9d5a9bcf23b!2zS29qZcSNw61uIDMzLCA1ODIgNTUgSGVyw6FsZWMgdSBIYXZsw63EjWtvdmEgQnJvZHU!5e1!3m2!1scs!2scz!4v1785441120740!5m2!1scs!2scz"
+                class="w-full h-full border-0 rounded-[1.25rem] absolute inset-0 p-2"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa lokace masážního salonu Laskavě">
+              </iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         LIGHTBOX MODAL FOR GALLERY & PORTRAIT ZOOM
+         ====================================================================== -->
+    <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Prohlížeč fotografií salonu">
+      <button id="lightbox-close-btn" class="absolute top-6 right-6 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors" aria-label="Zavřít náhled">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      
+      <div class="lightbox-content bg-[#FAF6F0] flex flex-col max-w-4xl w-full">
+        <div class="relative bg-black/90 max-h-[75vh] flex items-center justify-center overflow-hidden">
+          <img id="lightbox-img" src="" alt="Detail z masážního salonu Laskavě" class="max-h-[75vh] w-auto object-contain mx-auto" />
+        </div>
+        <div class="p-4 sm:p-6 bg-[#FAF6F0] border-t border-[#E8DEC8] flex items-center justify-between">
+          <span id="lightbox-caption" class="font-serif-display text-lg text-[#3A2E26]"></span>
+          <span class="text-xs text-[#6C5D53] uppercase tracking-wider font-semibold">Laskavě — Masážní salon</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         FOOTER
+         ====================================================================== -->
+    <footer class="bg-[#251C17] text-[#D4C5A9] py-16 border-t border-[#3A2E26]">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+          
+          <!-- Column 1: Brand -->
+          <div class="md:col-span-2 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[#3A2E26] flex items-center justify-center border border-[#C69B59]/40">
+                <i data-lucide="sparkles" class="w-5 h-5 text-[#DFBD83]"></i>
+              </div>
+              <span class="font-serif-display text-2xl text-white font-medium">Laskavě</span>
+            </div>
+            <p class="text-sm text-[#D4C5A9]/80 max-w-sm leading-relaxed">
+              Jemná, uklidňující a celostní péče pro tělo, mysl i duši. 
+              V jemnosti a hloubce je síla.
+            </p>
+            <p class="font-serif-quote italic text-sm text-[#DFBD83]">
+              Zuzana Klazarová — zdravotní sestra & masérka
+            </p>
+          </div>
+
+          <!-- Column 2: Navigation -->
+          <div>
+            <h4 class="text-xs uppercase tracking-widest text-[#DFBD83] font-semibold mb-4">Navigace</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#uvod" class="hover:text-white transition-colors">Úvod</a></li>
+              <li><a href="#sluzby" class="hover:text-white transition-colors">Služby & ceník</a></li>
+              <li><a href="#o-mne" class="hover:text-white transition-colors">O masérce</a></li>
+              <li><a href="#recenze" class="hover:text-white transition-colors">Recenze klientů</a></li>
+              <li><a href="#kontakt" class="hover:text-white transition-colors">Kontakt & mapa</a></li>
+              <li><a href="#rezervace" class="hover:text-white transition-colors">Online rezervace</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Contact & Hours -->
+          <div>
+            <h4 class="text-xs uppercase tracking-widest text-[#DFBD83] font-semibold mb-4">Kontakt</h4>
+            <ul class="space-y-2 text-sm text-[#D4C5A9]/90">
+              <li>+420 737 904 012</li>
+              <li>zuzana@laskave.cz</li>
+              <li>Po – Pá: 9:00 – 19:00</li>
+              <li>So: 10:00 – 15:00</li>
+              <li class="pt-2 text-xs text-[#DFBD83]/80">Mohendžodáro & Ájurvéda</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Bottom Copyright & Back to Top -->
+        <div class="pt-8 border-t border-[#3A2E26] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#D4C5A9]/70">
+          <p>© 2026 Laskavě — Zuzana Klazarová. Všechna práva vyhrazena.</p>
+          <p class="italic">Vytvořeno s láskou k péči o tělo i duši</p>
+          <a href="#uvod" class="inline-flex items-center gap-1.5 text-[#DFBD83] hover:text-white transition-colors">
+            <span>Zpět na začátek</span>
+            <i data-lucide="arrow-up" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+      </div>
+    </footer>
+
+
+    <!-- Modal for Review -->
+    <div id="review-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300">
+      <!-- Backdrop -->
+      <div id="review-modal-backdrop" class="absolute inset-0 bg-[#251C17]/80 backdrop-blur-sm transition-opacity"></div>
+      
+      <!-- Modal Content -->
+      <div class="relative bg-[#FAF6F0] w-full max-w-2xl rounded-2xl shadow-2xl p-6 sm:p-8 transform scale-95 opacity-0 transition-all duration-300" id="review-modal-content">
+        <button id="review-modal-close" class="absolute top-4 right-4 p-2 text-[#6C5D53] hover:text-[#251C17] hover:bg-[#E8DEC8]/50 rounded-full transition-colors focus:outline-none">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        
+        <div class="flex items-center gap-1 text-[#C69B59] mb-6">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        
+        <div id="review-modal-text" class="font-serif-quote italic text-lg sm:text-xl text-[#3A2E26] leading-relaxed max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+          <!-- Text goes here -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
