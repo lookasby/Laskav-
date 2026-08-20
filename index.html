@@ -157,7 +157,7 @@
         </div>
 
         <!-- ==================================================================
-             ATMOSPHERIC PHOTO CAROUSEL (Photos 1.jpg - 7.jpg)
+             ATMOSPHERIC PHOTO CAROUSEL (Photos 1.webp - 7.webp)
              ================================================================== -->
         <div class="relative w-full overflow-hidden reveal reveal-delay-200 group -mx-1 sm:-mx-2" id="photo-carousel-container">
           <!-- Navigation Arrows -->
@@ -1304,13 +1304,13 @@
             Občas Vám pošlu inspiraci pro zklidnění, informace o volných termínech nebo zajímavostech z oblasti celostní péče. Žádný spam, jen laskavá slova.
           </p>
           <!-- Formulář pro newsletter -->
-          <!-- TODO: Nahraďte '#' v atributu action za URL adresu vašeho poskytovatele newsletterů (např. Mailchimp, Ecomail) -->
-          <form class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto" action="#" method="POST" target="_blank">
-            <input type="email" name="EMAIL" placeholder="Váš e-mail" required class="w-full bg-white border border-[#C69B59]/40 rounded-full px-6 py-3 text-[#3A2E26] focus:outline-none focus:ring-2 focus:ring-[#9F7635]/50 transition-all placeholder:text-[#6C5D53]/60" />
-            <button type="submit" class="btn-primary w-full sm:w-auto shrink-0 shadow-md">
+          <form id="footer-newsletter-form" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+            <input type="email" id="footer-newsletter-email" name="EMAIL" placeholder="Váš e-mail" required class="w-full bg-white border border-[#C69B59]/40 rounded-full px-6 py-3 text-[#3A2E26] focus:outline-none focus:ring-2 focus:ring-[#9F7635]/50 transition-all placeholder:text-[#6C5D53]/60" />
+            <button type="submit" id="footer-newsletter-submit-btn" class="btn-primary w-full sm:w-auto shrink-0 shadow-md">
               Přihlásit se
             </button>
           </form>
+          <div id="footer-newsletter-message" class="hidden text-sm font-medium p-3 rounded-lg mt-4 max-w-md mx-auto text-center"></div>
           <p class="text-[10px] text-[#6C5D53] mt-4 opacity-80">Vaše údaje jsou u mě v bezpečí. Odběr můžete kdykoliv zrušit.</p>
         </div>
 
