@@ -39,6 +39,31 @@
   </head>
   <body class="bg-[#FAF6F0] text-[#3A2E26] antialiased selection:bg-[#DFBD83]/30 selection:text-[#3A2E26]">
     
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay" class="fixed inset-0 z-[9999] bg-[#FAF6F0] flex flex-col items-center justify-center p-4 transition-opacity duration-500">
+      <div class="max-w-md w-full bg-white p-8 sm:p-10 rounded-3xl shadow-2xl text-center border border-[#E8DEC8]">
+        <div class="w-16 h-16 mx-auto bg-[#F3EDE4] rounded-full flex items-center justify-center mb-6">
+          <i data-lucide="lock" class="w-8 h-8 text-[#9F7635]"></i>
+        </div>
+        <h2 class="font-serif-display text-3xl text-[#251C17] mb-3">Chráněný přístup</h2>
+        <p class="text-[#6C5D53] mb-8">Pro zobrazení webu zadejte prosím heslo.</p>
+        <form id="password-form" class="space-y-4">
+          <input type="password" id="site-password" placeholder="Heslo" class="w-full px-5 py-4 rounded-xl border border-[#E8DEC8] bg-[#FAF6F0] text-[#251C17] focus:outline-none focus:ring-2 focus:ring-[#C69B59] text-center" />
+          <button type="submit" class="w-full bg-[#9F7635] hover:bg-[#8A652B] text-white px-6 py-4 rounded-xl font-medium transition-all">
+            Vstoupit
+          </button>
+          <p id="password-error" class="text-red-600 text-sm hidden mt-2">Nesprávné heslo.</p>
+        </form>
+      </div>
+    </div>
+    <script>
+      if (sessionStorage.getItem('site_unlocked') === 'true') {
+        document.getElementById('password-overlay').style.display = 'none';
+      } else {
+        document.body.style.overflow = 'hidden';
+      }
+    </script>
+    
     <!-- ======================================================================
          FIXED HEADER & NAVIGATION (Sticky Header with Glass Effect)
          ====================================================================== -->

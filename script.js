@@ -4,6 +4,29 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Password Protection Logic ---
+  const pwOverlay = document.getElementById('password-overlay');
+  const pwForm = document.getElementById('password-form');
+  const pwInput = document.getElementById('site-password');
+  const pwError = document.getElementById('password-error');
+
+  if (pwOverlay && pwForm && pwInput && pwError) {
+    if (sessionStorage.getItem('site_unlocked') !== 'true') {
+      pwForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (pwInput.value === 'Sochorov') {
+          sessionStorage.setItem('site_unlocked', 'true');
+          document.body.style.overflow = '';
+          pwOverlay.style.opacity = '0';
+          setTimeout(() => pwOverlay.style.display = 'none', 500);
+        } else {
+          pwError.classList.remove('hidden');
+          pwInput.value = '';
+        }
+      });
+    }
+  }
+
   // 1. Initialize Lucide Icons if available
   if (window.lucide && typeof window.lucide.createIcons === 'function') {
     window.lucide.createIcons();
@@ -347,23 +370,80 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
   // --- Newsletter Subscription Logic ---
+  const handleSubscription = async (e, emailInput, submitBtn, messageEl, isModal = false) => {
+    e.preventDefault();
+    
+    const email = emailInput.value;
+    if (!email) return;
+
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Odesílám...';
+    submitBtn.disabled = true;
+    lucide.createIcons();
+
+    try {
+      // Direct call to MailerLite API from the client (ideal for static hosting without a backend)
+      const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiYWYwOWM1NjZhMjA3MmIwNDQ2MzJjYzA3YmMxYjM2MjA1ZmQ4NmIzZWRmNWYzYzZmYzFiNWJjNzc4NWEyMDY1OTBiMzhkNWUyYTZhNzY1Y2IiLCJpYXQiOjE3ODcyMjA0MDMuODk4NzU5LCJuYmYiOjE3ODcyMjA0MDMuODk4NzYyLCJleHAiOjQ5NDI4OTQwMDMuODkyNzQzLCJzdWIiOiIyNTk4NDY5Iiwic2NvcGVzIjpbXX0.gmeKaire_W26S8m84DdHA1JdWwF0_EDsEkWdwXlnlRSG78sceccIkBx_vPFTmXWTqZ5HI72mMDez7DgfnuzBBVYGzNN7Gdd1vkwHjr4A0Tzqzzg75c4JNw9X1340oJgBpPXG8ybwNtVDt3EWWBX2898xJgHAqA94ctjbtXIU3d3iojW6TlqUh3qoYbZ1fpiFXwVH70Bweaiwf96UJp_KtdLEjruKlCB5tMwi1E_SwfVXYjVB6lXwsEpZWloCgeO5hnxwlSKchpClx7NX6WzkpmIEzm2VEe5IhkS8vOUeprcx2vdOiAnALcwK45rRQdAis-keW74fLdg3weuqmcvf3m6oNcXPMA9tbetTL-4KWyLkWx_PEDHjpcKLXxyQsoa2utTLzHbNfXBhRJM0B6DNkySXJa_4bj2ZJaekYyXDRubPyc-f_BPUUHuIGdm24P6lFtX4ocr_WZXW5nTw3GdSHAo40Z5S64LVFWmSFO5HqtgMLCwH4Uzsk4EeBOmLe2j4UaUe9psk0Pwh0Ge_wZePjwMYtbO1H__fak77eEBkRQCOhSab-qbHyhZXcdp-0B7pUNmPLb8AajTJwGt9KV56J7U1nnwdAtb3V6Q6bC9T0m0Egk5BlAplVcPEz6mFL07si_DGAhQTImOJ1BCe1G6MSIaQDPp6LiU1HtKTOxiHSpU'
+        },
+        body: JSON.stringify({ email: email })
+      });
+
+      const data = await response.json();
+
+      messageEl.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+      
+      if (response.ok) {
+        messageEl.classList.add('bg-green-100', 'text-green-700');
+        messageEl.textContent = 'Děkuji! Byli jste úspěšně přihlášeni k odběru.';
+        emailInput.value = '';
+        if (isModal) {
+          setTimeout(closeNewsletterModal, 3000);
+        }
+      } else {
+        messageEl.classList.add('bg-red-100', 'text-red-700');
+        messageEl.textContent = data.message || 'Něco se pokazilo, zkuste to prosím později.';
+      }
+    } catch (error) {
+      messageEl.classList.remove('hidden');
+      messageEl.classList.add('bg-red-100', 'text-red-700');
+      messageEl.textContent = 'Došlo k chybě při komunikaci se servery.';
+    } finally {
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+      messageEl.classList.remove('hidden');
+      lucide.createIcons();
+    }
+  };
+
+  // Modal Newsletter Setup
   const newsletterModal = document.getElementById('newsletter-modal');
   const newsletterContent = document.getElementById('newsletter-modal-content');
   const newsletterClose = document.getElementById('newsletter-modal-close');
   const newsletterBackdrop = document.getElementById('newsletter-modal-backdrop');
-  const newsletterForm = document.getElementById('newsletter-form');
-  const newsletterEmail = document.getElementById('newsletter-email');
-  const newsletterSubmitBtn = document.getElementById('newsletter-submit-btn');
-  const newsletterMessage = document.getElementById('newsletter-message');
+  
+  const modalForm = document.getElementById('newsletter-form');
+  const modalEmail = document.getElementById('newsletter-email');
+  const modalSubmitBtn = document.getElementById('newsletter-submit-btn');
+  const modalMessage = document.getElementById('newsletter-message');
 
-  let hasNewsletterBeenShown = sessionStorage.getItem('newsletterShown');
+  let hasNewsletterBeenShown = false;
+  try {
+    hasNewsletterBeenShown = sessionStorage.getItem('newsletterShown');
+  } catch(e) {}
 
   const openNewsletterModal = () => {
     if (hasNewsletterBeenShown) return;
     newsletterModal.classList.remove('opacity-0', 'pointer-events-none');
     newsletterContent.classList.remove('scale-95');
     newsletterContent.classList.add('scale-100');
-    sessionStorage.setItem('newsletterShown', 'true');
+    try {
+      sessionStorage.setItem('newsletterShown', 'true');
+    } catch(e) {}
     hasNewsletterBeenShown = true;
   };
 
@@ -380,46 +460,19 @@ document.addEventListener('DOMContentLoaded', () => {
     newsletterClose.addEventListener('click', closeNewsletterModal);
     newsletterBackdrop.addEventListener('click', closeNewsletterModal);
 
-    newsletterForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const email = newsletterEmail.value;
-      if (!email) return;
+    modalForm.addEventListener('submit', (e) => {
+      handleSubscription(e, modalEmail, modalSubmitBtn, modalMessage, true);
+    });
+  }
 
-      const originalBtnText = newsletterSubmitBtn.innerHTML;
-      newsletterSubmitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Odesílám...';
-      newsletterSubmitBtn.disabled = true;
-      lucide.createIcons();
+  // Footer Newsletter Setup
+  const footerForm = document.getElementById('footer-newsletter-form');
+  const footerEmail = document.getElementById('footer-newsletter-email');
+  const footerSubmitBtn = document.getElementById('footer-newsletter-submit-btn');
+  const footerMessage = document.getElementById('footer-newsletter-message');
 
-      try {
-        const response = await fetch('/api/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
-        });
-
-        const data = await response.json();
-
-        newsletterMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
-        
-        if (response.ok) {
-          newsletterMessage.classList.add('bg-green-100', 'text-green-700');
-          newsletterMessage.textContent = 'Děkuji! Byli jste úspěšně přihlášeni k odběru.';
-          newsletterEmail.value = '';
-          setTimeout(closeNewsletterModal, 3000);
-        } else {
-          newsletterMessage.classList.add('bg-red-100', 'text-red-700');
-          newsletterMessage.textContent = data.error || 'Něco se pokazilo, zkuste to prosím později.';
-        }
-      } catch (error) {
-        newsletterMessage.classList.remove('hidden');
-        newsletterMessage.classList.add('bg-red-100', 'text-red-700');
-        newsletterMessage.textContent = 'Došlo k chybě při komunikaci se serverem.';
-      } finally {
-        newsletterSubmitBtn.innerHTML = originalBtnText;
-        newsletterSubmitBtn.disabled = false;
-        newsletterMessage.classList.remove('hidden');
-        lucide.createIcons();
-      }
+  if (footerForm) {
+    footerForm.addEventListener('submit', (e) => {
+      handleSubscription(e, footerEmail, footerSubmitBtn, footerMessage, false);
     });
   }
