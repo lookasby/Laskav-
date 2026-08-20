@@ -345,3 +345,81 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateIframeScroll);
   }
 });
+
+  // --- Newsletter Subscription Logic ---
+  const newsletterModal = document.getElementById('newsletter-modal');
+  const newsletterContent = document.getElementById('newsletter-modal-content');
+  const newsletterClose = document.getElementById('newsletter-modal-close');
+  const newsletterBackdrop = document.getElementById('newsletter-modal-backdrop');
+  const newsletterForm = document.getElementById('newsletter-form');
+  const newsletterEmail = document.getElementById('newsletter-email');
+  const newsletterSubmitBtn = document.getElementById('newsletter-submit-btn');
+  const newsletterMessage = document.getElementById('newsletter-message');
+
+  let hasNewsletterBeenShown = sessionStorage.getItem('newsletterShown');
+
+  const openNewsletterModal = () => {
+    if (hasNewsletterBeenShown) return;
+    newsletterModal.classList.remove('opacity-0', 'pointer-events-none');
+    newsletterContent.classList.remove('scale-95');
+    newsletterContent.classList.add('scale-100');
+    sessionStorage.setItem('newsletterShown', 'true');
+    hasNewsletterBeenShown = true;
+  };
+
+  const closeNewsletterModal = () => {
+    newsletterModal.classList.add('opacity-0', 'pointer-events-none');
+    newsletterContent.classList.remove('scale-100');
+    newsletterContent.classList.add('scale-95');
+  };
+
+  if (newsletterModal) {
+    // Show after 15 seconds
+    setTimeout(openNewsletterModal, 15000);
+
+    newsletterClose.addEventListener('click', closeNewsletterModal);
+    newsletterBackdrop.addEventListener('click', closeNewsletterModal);
+
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = newsletterEmail.value;
+      if (!email) return;
+
+      const originalBtnText = newsletterSubmitBtn.innerHTML;
+      newsletterSubmitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Odesílám...';
+      newsletterSubmitBtn.disabled = true;
+      lucide.createIcons();
+
+      try {
+        const response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+
+        newsletterMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+        
+        if (response.ok) {
+          newsletterMessage.classList.add('bg-green-100', 'text-green-700');
+          newsletterMessage.textContent = 'Děkuji! Byli jste úspěšně přihlášeni k odběru.';
+          newsletterEmail.value = '';
+          setTimeout(closeNewsletterModal, 3000);
+        } else {
+          newsletterMessage.classList.add('bg-red-100', 'text-red-700');
+          newsletterMessage.textContent = data.error || 'Něco se pokazilo, zkuste to prosím později.';
+        }
+      } catch (error) {
+        newsletterMessage.classList.remove('hidden');
+        newsletterMessage.classList.add('bg-red-100', 'text-red-700');
+        newsletterMessage.textContent = 'Došlo k chybě při komunikaci se serverem.';
+      } finally {
+        newsletterSubmitBtn.innerHTML = originalBtnText;
+        newsletterSubmitBtn.disabled = false;
+        newsletterMessage.classList.remove('hidden');
+        lucide.createIcons();
+      }
+    });
+  }
