@@ -86,7 +86,7 @@
         </a>
 
         <!-- Desktop Navigation Links -->
-        <nav class="hidden md:flex items-center gap-8 lg:gap-10">
+        <nav class="hidden lg:flex items-center gap-8 lg:gap-10">
           <a href="#uvod" class="nav-link text-sm uppercase tracking-wider font-medium">Úvod</a>
           <a href="#sluzby" class="nav-link text-sm uppercase tracking-wider font-medium">Služby</a>
           <a href="#produkty" class="nav-link text-sm uppercase tracking-wider font-medium">Produkty</a>
@@ -104,7 +104,7 @@
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-toggle-btn" class="md:hidden p-2.5 rounded-full bg-[#F3EDE4] border border-[#E8DEC8] text-[#3A2E26] hover:text-[#9F7635] focus:outline-none" aria-label="Otevřít navigaci">
+        <button id="mobile-toggle-btn" class="lg:hidden p-2.5 rounded-full bg-[#F3EDE4] border border-[#E8DEC8] text-[#3A2E26] hover:text-[#9F7635] focus:outline-none" aria-label="Otevřít navigaci">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
 
@@ -115,10 +115,6 @@
          MOBILE MENU DRAWER
          ====================================================================== -->
     <div id="mobile-menu-drawer" class="mobile-menu-drawer">
-      <button id="mobile-menu-close-btn" class="absolute top-6 right-6 p-3 rounded-full bg-[#F3EDE4] border border-[#E8DEC8] text-[#3A2E26] hover:text-[#9F7635]" aria-label="Zavřít navigaci">
-        <i data-lucide="x" class="w-6 h-6"></i>
-      </button>
-      
       <div class="flex flex-col items-center gap-2 mb-6">
         <span class="font-serif-display text-3xl font-medium text-[#3A2E26]">Laskavě</span>
         <span class="text-xs uppercase tracking-[0.2em] text-[#9F7635]">masážní salon</span>
@@ -1203,7 +1199,7 @@
         </div>
 
         <!-- Cal.com Calendar Iframe Wrapper -->
-        <div class="reveal reveal-delay-100 flex flex-col w-full h-[600px] shadow-2xl rounded-2xl overflow-hidden border border-[#E8DEC8]">
+        <div class="reveal reveal-delay-100 flex flex-col w-full max-w-[1000px] mx-auto h-[850px] shadow-2xl rounded-2xl overflow-hidden border border-[#E8DEC8]">
           <!-- Selected Service Notification Banner -->
           <div id="selected-service-badge" class="hidden items-center gap-2 px-4 py-2 mb-4 rounded-xl bg-[#E8DEC8] border border-[#C69B59] text-xs font-semibold text-[#3A2E26] mx-4 mt-4">
             <i data-lucide="check-circle" class="w-4 h-4 text-[#4E6B5D]"></i>
@@ -1213,7 +1209,7 @@
             <iframe 
               id="cal-iframe"
               src="https://app.cal.com/laskave" 
-              class="w-full h-full border-0 overflow-hidden"
+              class="w-full h-full border-0 overflow-y-auto lg:overflow-hidden"
               title="Rezervační systém Laskavě - Cal.com" scrolling="auto"
               loading="lazy">
             </iframe>
@@ -1336,7 +1332,7 @@
             </button>
           </form>
           <div id="footer-newsletter-message" class="hidden text-sm font-medium p-3 rounded-lg mt-4 max-w-md mx-auto text-center"></div>
-          <p class="text-[10px] text-[#6C5D53] mt-4 opacity-80">Vaše údaje jsou u mě v bezpečí. Odběr můžete kdykoliv zrušit.</p>
+          <p class="text-[10px] text-[#6C5D53] mt-4 opacity-80">Vaše údaje jsou u mě v bezpečí. <a href="#" class="privacy-link underline hover:text-[#9F7635] transition-colors">Ochrana osobních údajů</a>. Odběr můžete kdykoliv zrušit.</p>
         </div>
 
       </div>
@@ -1396,6 +1392,7 @@
               <li><a href="#recenze" class="hover:text-white transition-colors">Recenze klientů</a></li>
               <li><a href="#kontakt" class="hover:text-white transition-colors">Kontakt & mapa</a></li>
               <li><a href="#rezervace" class="hover:text-white transition-colors">Online rezervace</a></li>
+              <li><a href="#" class="privacy-link hover:text-white transition-colors">Ochrana osobních údajů</a></li>
             </ul>
           </div>
 
@@ -1495,8 +1492,48 @@
           </form>
           
           <p class="text-xs text-[#6C5D53]/70 mt-6">
-            Váš e-mail je u mě v bezpečí. Z odběru se můžete kdykoliv odhlásit.
+            Váš e-mail je u mě v bezpečí. <a href="#" class="privacy-link underline hover:text-[#9F7635] transition-colors">Ochrana osobních údajů</a>. Z odběru se můžete kdykoliv odhlásit.
           </p>
+        </div>
+      </div>
+    </div>
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300">
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-[#251C17]/60 backdrop-blur-sm" id="privacy-modal-backdrop"></div>
+      
+      <!-- Modal Content -->
+      <div class="relative bg-[#FAF6F0] w-full max-w-3xl max-h-[85vh] rounded-2xl shadow-2xl flex flex-col transform scale-95 transition-all duration-300" id="privacy-modal-content">
+        <!-- Header -->
+        <div class="flex items-center justify-between px-6 py-5 border-b border-[#E8DEC8]">
+          <h3 class="font-serif-display text-2xl font-medium text-[#251C17]">Ochrana osobních údajů</h3>
+          <button id="privacy-modal-close" class="p-2 text-[#6C5D53] hover:text-[#251C17] hover:bg-[#E8DEC8]/50 rounded-full transition-colors focus:outline-none shrink-0">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        
+        <!-- Body -->
+        <div class="p-6 sm:p-8 overflow-y-auto custom-scrollbar text-[#3A2E26] space-y-6">
+          <section>
+            <h4 class="font-semibold text-lg text-[#9F7635] mb-2">1. Úvodní ustanovení</h4>
+            <p class="text-sm leading-relaxed">Tyto zásady ochrany osobních údajů upravují způsob, jakým shromažďujeme, používáme a chráníme vaše osobní údaje, které nám poskytnete prostřednictvím těchto webových stránek, například při přihlášení k odběru newsletteru nebo provedení rezervace. Vaše soukromí je pro nás důležité a zpracování probíhá v souladu s nařízením GDPR.</p>
+          </section>
+          <section>
+            <h4 class="font-semibold text-lg text-[#9F7635] mb-2">2. Jaké údaje zpracováváme</h4>
+            <p class="text-sm leading-relaxed">Při přihlášení k odběru newsletteru od vás shromažďujeme pouze vaši e-mailovou adresu. V případě využití rezervačního systému mohou být shromažďovány další údaje jako jméno, příjmení a telefonní číslo, a to výhradně za účelem vyřízení vaší rezervace masáže a navazující komunikace.</p>
+          </section>
+          <section>
+            <h4 class="font-semibold text-lg text-[#9F7635] mb-2">3. Účel zpracování a doba uchování</h4>
+            <p class="text-sm leading-relaxed">Vaše e-mailová adresa bude použita pro účely rozesílání občasných novinek, článků a informací o volných termínech. Údaje z newsletteru uchováváme do doby, než se z odběru odhlásíte, což můžete učinit kdykoliv prostřednictvím odkazu v každém e-mailu. Ostatní osobní údaje jsou uchovávány po dobu nezbytně nutnou pro poskytnutí služby a splnění zákonných povinností.</p>
+          </section>
+          <section>
+            <h4 class="font-semibold text-lg text-[#9F7635] mb-2">4. Předávání údajů třetím stranám</h4>
+            <p class="text-sm leading-relaxed">Vaše údaje neprodáváme ani jinak nepředáváme třetím stranám pro marketingové účely. Pro rozesílání newsletterů můžeme využívat služby prověřených zpracovatelů (např. MailerLite), kteří splňují veškeré požadavky GDPR. Rezervace jsou zpracovávány přes rezervační systém Cal.com, jehož zpracování se řídí vlastními podmínkami ochrany soukromí.</p>
+          </section>
+          <section>
+            <h4 class="font-semibold text-lg text-[#9F7635] mb-2">5. Vaše práva</h4>
+            <p class="text-sm leading-relaxed">Máte právo požadovat přístup k vašim osobním údajům, jejich opravu, výmaz nebo omezení zpracování. Dále máte právo vznést námitku proti zpracování a právo na přenositelnost údajů. V případě dotazů nebo uplatnění těchto práv mě prosím kontaktujte na e-mailu <a href="mailto:zuzana@laskave.net" class="text-[#9F7635] hover:underline">zuzana@laskave.net</a>.</p>
+          </section>
         </div>
       </div>
     </div>

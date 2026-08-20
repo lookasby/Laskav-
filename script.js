@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileMenuDrawer) {
       mobileMenuDrawer.classList.add('open');
       document.body.style.overflow = 'hidden';
+      // Change icon to X if needed, or leave it. We'll leave it as three lines.
     }
   };
 
@@ -90,9 +91,19 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     }
   };
+  
+  const toggleMobileMenu = () => {
+    if (mobileMenuDrawer) {
+      if (mobileMenuDrawer.classList.contains('open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    }
+  };
 
   if (mobileToggleBtn) {
-    mobileToggleBtn.addEventListener('click', openMobileMenu);
+    mobileToggleBtn.addEventListener('click', toggleMobileMenu);
   }
 
   if (mobileMenuCloseBtn) {
@@ -353,19 +364,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 10. Cal.com iframe scroll management
   const calIframe = document.getElementById('cal-iframe');
   if (calIframe) {
-    const updateIframeScroll = () => {
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      const is16by9 = window.matchMedia('(min-aspect-ratio: 16/9)').matches; 
-
-      if (isMobile || is16by9) {
-        calIframe.setAttribute('scrolling', 'no');
-      } else {
-        calIframe.setAttribute('scrolling', 'auto');
-      }
-    };
-    
-    updateIframeScroll();
-    window.addEventListener('resize', updateIframeScroll);
+    // Scroll handling is now managed by Tailwind CSS classes in HTML
+    calIframe.setAttribute('scrolling', 'auto');
   }
 });
 
@@ -474,5 +474,42 @@ document.addEventListener('DOMContentLoaded', () => {
   if (footerForm) {
     footerForm.addEventListener('submit', (e) => {
       handleSubscription(e, footerEmail, footerSubmitBtn, footerMessage, false);
+    });
+  }
+
+  // --- Privacy Policy Modal Logic ---
+  const privacyModal = document.getElementById('privacy-modal');
+  const privacyContent = document.getElementById('privacy-modal-content');
+  const privacyClose = document.getElementById('privacy-modal-close');
+  const privacyBackdrop = document.getElementById('privacy-modal-backdrop');
+  const privacyLinks = document.querySelectorAll('.privacy-link');
+
+  if (privacyModal) {
+    const openPrivacyModal = (e) => {
+      if (e) e.preventDefault();
+      privacyModal.classList.remove('opacity-0', 'pointer-events-none');
+      privacyContent.classList.remove('scale-95');
+      privacyContent.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closePrivacyModal = () => {
+      privacyModal.classList.add('opacity-0', 'pointer-events-none');
+      privacyContent.classList.remove('scale-100');
+      privacyContent.classList.add('scale-95');
+      document.body.style.overflow = '';
+    };
+
+    privacyLinks.forEach(link => {
+      link.addEventListener('click', openPrivacyModal);
+    });
+
+    privacyClose.addEventListener('click', closePrivacyModal);
+    privacyBackdrop.addEventListener('click', closePrivacyModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !privacyModal.classList.contains('pointer-events-none')) {
+        closePrivacyModal();
+      }
     });
   }
