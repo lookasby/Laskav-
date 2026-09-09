@@ -182,6 +182,95 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 6b. Service Windows (Rozklikávací okna) - Handle toggle, full-width expansion and deep links
+  const secondaryGrid = document.getElementById('secondary-services-grid');
+  const allServiceWindows = [
+    document.getElementById('window-masaze'),
+    document.getElementById('window-mohendzodaro'),
+    document.getElementById('window-produkty')
+  ].filter(Boolean);
+  const smallWindows = [
+    document.getElementById('window-mohendzodaro'),
+    document.getElementById('window-produkty')
+  ].filter(Boolean);
+
+  const updateSecondaryGridState = () => {
+    if (!secondaryGrid) return;
+    const anySmallOpen = smallWindows.some(win => win && win.open);
+    secondaryGrid.classList.toggle('has-expanded-window', anySmallOpen);
+
+    smallWindows.forEach(win => {
+      const col = win.closest('.service-window-col');
+      if (col) {
+        col.classList.toggle('is-expanded', win.open);
+      }
+    });
+  };
+
+  allServiceWindows.forEach(win => {
+    win.addEventListener('toggle', () => {
+      if (win.open) {
+        // If on small screen, or among smallWindows on desktop, close other windows
+        if (window.innerWidth < 1024) {
+          allServiceWindows.forEach(other => {
+            if (other && other !== win && other.open) {
+              other.open = false;
+            }
+          });
+        } else if (smallWindows.includes(win)) {
+          smallWindows.forEach(other => {
+            if (other && other !== win && other.open) {
+              other.open = false;
+            }
+          });
+        }
+      }
+      updateSecondaryGridState();
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    });
+  });
+
+  // Handle bottom "Sbalit okno do původní velikosti" buttons
+  document.querySelectorAll('.close-window-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = btn.getAttribute('data-target');
+      const targetWin = document.getElementById(targetId);
+      if (targetWin) {
+        targetWin.open = false;
+        updateSecondaryGridState();
+        targetWin.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  });
+
+  const handleServiceHash = () => {
+    const hash = window.location.hash;
+    if (hash === '#produkty') {
+      const winProdukty = document.getElementById('window-produkty');
+      if (winProdukty) {
+        winProdukty.open = true;
+        updateSecondaryGridState();
+      }
+    } else if (hash === '#mohendzodaro') {
+      const winMohendzo = document.getElementById('window-mohendzodaro');
+      if (winMohendzo) {
+        winMohendzo.open = true;
+        updateSecondaryGridState();
+      }
+    } else if (hash === '#sluzby') {
+      const winMasaze = document.getElementById('window-masaze');
+      if (winMasaze) {
+        winMasaze.open = true;
+      }
+    }
+  };
+  window.addEventListener('hashchange', handleServiceHash);
+  handleServiceHash();
+
   // 7. Interactive Joy Pills click sparkle effect
   const joyPills = document.querySelectorAll('.joy-pill');
   joyPills.forEach(pill => {

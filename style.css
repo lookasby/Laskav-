@@ -4,7 +4,7 @@
    ========================================================================== */
 
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700;1,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 /* Base CSS Variables & Palette */
 :root {
@@ -76,6 +76,18 @@ body {
 
 .font-sans-clean {
   font-family: var(--font-sans);
+}
+
+.font-movie-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+}
+
+.font-cinzel-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 800;
+  letter-spacing: 0.04em;
 }
 
 /* Custom Scrollbar */
@@ -487,3 +499,34 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(198, 155, 89, 0.8);
 }
+
+/* ==========================================================================
+   Service Windows (Rozklikávací okna)
+   ========================================================================== */
+.service-window summary::-webkit-details-marker {
+  display: none;
+}
+.service-window .window-text-open {
+  display: none;
+}
+.service-window[open] .window-text-open {
+  display: inline;
+}
+.service-window[open] .window-text-closed {
+  display: none;
+}
+
+/* Secondary windows expansion to full width */
+.service-window-col {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+  #secondary-services-grid.has-expanded-window .service-window-col,
+  .service-window-col.is-expanded,
+  .service-window-col:has(.service-window[open]) {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
