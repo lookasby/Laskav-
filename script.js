@@ -47,17 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Intersection Observer API for Scroll Reveal Animations (Fade-in / Slide-up)
   const revealElements = document.querySelectorAll('.reveal');
+  const isMobile = window.innerWidth <= 768;
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -60px 0px',
-    threshold: 0.12
+    // On mobile, start animation just before the element enters the viewport for buttery-smooth scrolling
+    rootMargin: isMobile ? '0px 0px 30px 0px' : '0px 0px -40px 0px',
+    threshold: isMobile ? 0.05 : 0.1
   };
 
   const revealCallback = (entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('revealed');
-        // Once revealed, unobserve for performance
+        // Once revealed, unobserve for optimal performance and memory
         observer.unobserve(entry.target);
       }
     });
@@ -65,7 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(revealCallback, observerOptions);
-    revealElements.forEach(el => observer.observe(el));
+    revealElements.forEach(el => {
+      // If already in or above viewport on initial load, reveal immediately without blank flash
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
+        el.classList.add('revealed');
+      } else {
+        observer.observe(el);
+      }
+    });
   } else {
     // Fallback if browser doesn't support IntersectionObserver
     revealElements.forEach(el => el.classList.add('revealed'));
@@ -80,14 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const openMobileMenu = () => {
     if (mobileMenuDrawer) {
       mobileMenuDrawer.classList.add('open');
+      document.body.classList.add('mobile-menu-open');
       document.body.style.overflow = 'hidden';
-      // Change icon to X if needed, or leave it. We'll leave it as three lines.
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
     }
   };
 
   const closeMobileMenu = () => {
     if (mobileMenuDrawer) {
       mobileMenuDrawer.classList.remove('open');
+      document.body.classList.remove('mobile-menu-open');
       document.body.style.overflow = '';
     }
   };
@@ -185,14 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6b. Service Windows (Rozklikávací okna) - Handle toggle, full-width expansion and deep links
   const secondaryGrid = document.getElementById('secondary-services-grid');
   const allServiceWindows = [
-    document.getElementById('window-masaze'),
     document.getElementById('window-mohendzodaro'),
     document.getElementById('window-produkty')
   ].filter(Boolean);
-  const smallWindows = [
-    document.getElementById('window-mohendzodaro'),
-    document.getElementById('window-produkty')
-  ].filter(Boolean);
+  const smallWindows = allServiceWindows;
 
   const updateSecondaryGridState = () => {
     if (!secondaryGrid) return;
@@ -264,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (hash === '#sluzby') {
       const winMasaze = document.getElementById('window-masaze');
       if (winMasaze) {
-        winMasaze.open = true;
+        if ('open' in winMasaze) winMasaze.open = true;
       }
     }
   };
@@ -377,12 +387,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Pause on hover or touch
+      // Pause on hover or touch, and support touch swipe gestures
+      let touchStartX = 0;
+      let touchStartY = 0;
+
       container.addEventListener('mouseenter', stopCarousel);
       container.addEventListener('mouseleave', startCarousel);
       
-      container.addEventListener('touchstart', stopCarousel, {passive: true});
-      container.addEventListener('touchend', startCarousel, {passive: true});
+      container.addEventListener('touchstart', (e) => {
+        stopCarousel();
+        if (e.changedTouches && e.changedTouches[0]) {
+          touchStartX = e.changedTouches[0].clientX;
+          touchStartY = e.changedTouches[0].clientY;
+        }
+      }, {passive: true});
+
+      container.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches[0]) {
+          const touchEndX = e.changedTouches[0].clientX;
+          const touchEndY = e.changedTouches[0].clientY;
+          const diffX = touchEndX - touchStartX;
+          const diffY = touchEndY - touchStartY;
+          if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX < 0) {
+              moveToNextSlide();
+            } else {
+              moveToPrevSlide();
+            }
+          }
+        }
+        startCarousel();
+      }, {passive: true});
     }
   };
 

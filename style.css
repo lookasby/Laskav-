@@ -234,10 +234,58 @@ body {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
-  border-color: rgba(198, 155, 89, 0.4);
+@media (hover: hover) {
+  .glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(198, 155, 89, 0.4);
+  }
+}
+
+/* ==========================================================================
+   Review Carousel Fixes (Strict line-clamp & uniform height to prevent jumping)
+   ========================================================================== */
+.line-clamp-4 {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 4 !important;
+  line-clamp: 4 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#review-carousel-container {
+  overflow: hidden !important;
+  touch-action: pan-y pinch-zoom;
+}
+
+#review-carousel-track {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden !important;
+}
+
+#review-carousel-track > div {
+  display: flex;
+  align-items: stretch;
+}
+
+#review-carousel-track .glass-card {
+  height: 275px !important;
+  min-height: 275px !important;
+  max-height: 275px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  transform: none !important;
+}
+
+#review-carousel-track .review-text {
+  height: 96px !important;
+  min-height: 96px !important;
+  max-height: 96px !important;
+  overflow: hidden !important;
 }
 
 .service-card {
@@ -353,47 +401,85 @@ body {
 .joy-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   background-color: #FFFFFF;
   border: 1px solid var(--color-sand-dark);
   color: var(--color-brown-dark);
-  font-size: 0.88rem;
+  font-size: 0.75rem;
+  line-height: 1.25;
   font-weight: 500;
-  padding: 0.5rem 1.15rem;
+  padding: 0.35rem 0.6rem;
   border-radius: var(--radius-pill);
   transition: all 0.3s ease;
   cursor: default;
   box-shadow: 0 2px 8px -2px rgba(58, 46, 38, 0.04);
 }
 
+@media (min-width: 640px) {
+  .joy-pill {
+    font-size: 0.85rem;
+    padding: 0.45rem 1rem;
+    gap: 0.45rem;
+  }
+}
+
 .joy-pill:hover {
   background-color: var(--color-cream);
   border-color: var(--color-gold);
   color: var(--color-gold-dark);
-  transform: translateY(-2px) scale(1.03);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: var(--shadow-card);
 }
 
 /* ==========================================================================
    Scroll Reveal Animations (Intersection Observer)
+   Hardware-accelerated and tailored for smooth mobile & desktop scrolling
    ========================================================================== */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .reveal.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .reveal-delay-100 { transition-delay: 100ms; }
 .reveal-delay-200 { transition-delay: 200ms; }
 .reveal-delay-300 { transition-delay: 300ms; }
 .reveal-delay-400 { transition-delay: 400ms; }
+
+/* Enhanced silky smooth reveal on mobile devices */
+@media (max-width: 768px) {
+  .reveal {
+    transform: translate3d(0, 16px, 0);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.revealed {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .reveal-delay-100 { transition-delay: 40ms; }
+  .reveal-delay-200 { transition-delay: 80ms; }
+  .reveal-delay-300 { transition-delay: 120ms; }
+  .reveal-delay-400 { transition-delay: 160ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 
 /* ==========================================================================
    Booking iframe container (Cal.com)
@@ -439,21 +525,33 @@ body {
 .mobile-menu-drawer {
   position: fixed;
   inset: 0;
-  z-index: 40;
+  z-index: 99;
   background-color: var(--color-cream-light);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  padding: 2.5rem 1.5rem 2rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  transform: translateY(-8px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mobile-menu-drawer.open {
   opacity: 1;
   pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Hide original header cleanly when mobile drawer is open */
+body.mobile-menu-open #header-nav {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-100%) !important;
+  transition: transform 0.3s ease, opacity 0.2s ease !important;
 }
 
 /* Accent badges & quotes */
@@ -516,6 +614,21 @@ body {
   display: none;
 }
 
+/* When secondary windows are opened, hide description - main offer (#window-masaze) keeps description always */
+#window-mohendzodaro[open] summary .service-window-desc,
+#window-produkty[open] summary .service-window-desc,
+.service-window[open] summary .service-window-bottom {
+  display: none !important;
+}
+
+#window-masaze summary .service-window-desc {
+  display: block !important;
+}
+
+.service-window[open] summary h3 {
+  margin-bottom: 0 !important;
+}
+
 /* Secondary windows expansion to full width */
 .service-window-col {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -527,6 +640,49 @@ body {
   .service-window-col:has(.service-window[open]) {
     grid-column: 1 / -1;
     width: 100%;
+  }
+}
+
+/* Mobile Phone Full-Width Expansion on Click/Open & for Main Offer */
+@media (max-width: 639px) {
+  #window-masaze,
+  .service-window[open] {
+    margin-left: -1.25rem !important;
+    margin-right: -1.25rem !important;
+    width: calc(100% + 2.5rem) !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  #window-masaze > div:first-child,
+  .service-window[open] > summary {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    border-radius: 0;
+  }
+
+  #window-masaze > div:nth-child(2),
+  .service-window[open] > div.border-t,
+  .service-window[open] > div:not(summary) {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Make inner cards maximize width nicely without large wasted margins */
+  #window-masaze .service-card,
+  #window-masaze .glass-card,
+  .service-window[open] .service-card,
+  .service-window[open] .glass-card {
+    padding-left: 1.125rem !important;
+    padding-right: 1.125rem !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+    border-radius: 1.25rem !important;
   }
 }
 
