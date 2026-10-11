@@ -130,19 +130,62 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. Interactive Photo Lightbox Modal
+  // 5. Interactive Photo Lightbox Modal with Gallery Navigation
   const lightboxModal = document.getElementById('lightbox-modal');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxCaption = document.getElementById('lightbox-caption');
   const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
-  const photoThumbnails = document.querySelectorAll('.photo-thumb, .portrait-thumb');
+  const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
+  const lightboxNextBtn = document.getElementById('lightbox-next-btn');
 
-  const openLightbox = (src, caption) => {
-    if (!lightboxModal || !lightboxImg) return;
-    lightboxImg.src = src;
-    if (lightboxCaption) {
-      lightboxCaption.textContent = caption || 'Masážní salon Laskavě — Oáza klidu a jemnosti';
+  // Collect all unique gallery items
+  const galleryItems = [];
+  const gatherGalleryItems = () => {
+    galleryItems.length = 0;
+    document.querySelectorAll('.photo-thumb, .portrait-thumb').forEach(thumb => {
+      const imgEl = thumb.querySelector('img');
+      const titleEl = thumb.querySelector('.photo-caption') || thumb.getAttribute('data-caption');
+      if (imgEl) {
+        const src = imgEl.getAttribute('src');
+        const caption = typeof titleEl === 'string' ? titleEl : (titleEl ? titleEl.textContent : '');
+        if (src && !galleryItems.some(item => item.src === src)) {
+          galleryItems.push({ src, caption });
+        }
+      }
+    });
+  };
+  gatherGalleryItems();
+
+  let currentGalleryIndex = 0;
+
+  const renderLightboxImage = (index) => {
+    if (galleryItems.length === 0) return;
+    currentGalleryIndex = (index + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[currentGalleryIndex];
+
+    if (lightboxImg) {
+      lightboxImg.style.opacity = '0';
+      setTimeout(() => {
+        lightboxImg.src = item.src;
+        if (lightboxCaption) {
+          lightboxCaption.textContent = item.caption || 'Masážní salon Laskavě — Oáza klidu a jemnosti';
+        }
+        lightboxImg.style.opacity = '1';
+      }, 100);
     }
+  };
+
+  const openLightboxByIndex = (index) => {
+    if (!lightboxModal || !lightboxImg) return;
+    if (galleryItems.length === 0) gatherGalleryItems();
+    currentGalleryIndex = (index + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[currentGalleryIndex];
+
+    lightboxImg.src = item.src;
+    if (lightboxCaption) {
+      lightboxCaption.textContent = item.caption || 'Masážní salon Laskavě — Oáza klidu a jemnosti';
+    }
+    lightboxImg.style.opacity = '1';
     lightboxModal.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
@@ -153,18 +196,48 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   };
 
-  photoThumbnails.forEach(thumb => {
-    thumb.addEventListener('click', (e) => {
-      const imgEl = thumb.querySelector('img');
-      const titleEl = thumb.querySelector('.photo-caption') || thumb.getAttribute('data-caption');
-      if (imgEl) {
-        openLightbox(imgEl.src, typeof titleEl === 'string' ? titleEl : (titleEl ? titleEl.textContent : ''));
-      }
-    });
+  const showPrevImage = () => {
+    renderLightboxImage(currentGalleryIndex - 1);
+  };
+
+  const showNextImage = () => {
+    renderLightboxImage(currentGalleryIndex + 1);
+  };
+
+  // Thumbnail click delegation (works even when carousel rotates items)
+  document.addEventListener('click', (e) => {
+    const thumb = e.target.closest('.photo-thumb, .portrait-thumb');
+    if (!thumb) return;
+    const imgEl = thumb.querySelector('img');
+    if (!imgEl) return;
+
+    const imgSrc = imgEl.getAttribute('src');
+    const foundIndex = galleryItems.findIndex(item => item.src === imgSrc || imgEl.src.includes(item.src));
+    if (foundIndex !== -1) {
+      openLightboxByIndex(foundIndex);
+    } else {
+      gatherGalleryItems();
+      const retryIndex = galleryItems.findIndex(item => item.src === imgSrc || imgEl.src.includes(item.src));
+      openLightboxByIndex(retryIndex !== -1 ? retryIndex : 0);
+    }
   });
 
   if (lightboxCloseBtn) {
     lightboxCloseBtn.addEventListener('click', closeLightbox);
+  }
+
+  if (lightboxPrevBtn) {
+    lightboxPrevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showPrevImage();
+    });
+  }
+
+  if (lightboxNextBtn) {
+    lightboxNextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showNextImage();
+    });
   }
 
   if (lightboxModal) {
@@ -173,11 +246,46 @@ document.addEventListener('DOMContentLoaded', () => {
         closeLightbox();
       }
     });
+
+    // Mobile touch swipe gestures (left / right)
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    lightboxModal.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    lightboxModal.addEventListener('touchend', (e) => {
+      if (e.changedTouches.length === 1) {
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+
+        // If swipe distance is > 40px and predominantly horizontal
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX < 0) {
+            showNextImage(); // Swiped left -> next image
+          } else {
+            showPrevImage(); // Swiped right -> previous image
+          }
+        }
+      }
+    }, { passive: true });
   }
 
+  // Keyboard navigation (Esc, Left Arrow, Right Arrow)
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightboxModal && lightboxModal.classList.contains('active')) {
+    if (!lightboxModal || !lightboxModal.classList.contains('active')) return;
+    if (e.key === 'Escape') {
       closeLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      showPrevImage();
+    } else if (e.key === 'ArrowRight') {
+      showNextImage();
     }
   });
 
