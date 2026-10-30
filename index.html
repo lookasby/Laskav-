@@ -346,8 +346,8 @@
             <!-- Content: Masáže details -->
             <div class="px-6 sm:px-8 lg:px-10 pb-8 sm:pb-10 pt-2 space-y-8">
               
-              <!-- 3 Massage Services Grid -->
-              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 pt-2">
+              <!-- 4 Massage Services Grid (2x2 layout) -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 pt-2">
                 
                 <!-- Card 1: CELOTĚLOVÁ MASÁŽ BY ZUZANA (Nejoblíbenější) -->
                 <div class="glass-card service-card p-5 sm:p-8 flex flex-col bg-[#FAF6F0]/95 border-2 border-[#C69B59]/50 shadow-md relative">
@@ -443,7 +443,58 @@
                   </div>
                 </div>
 
-                <!-- Card 3: Indická masáž hlavy Amitha -->
+                <!-- Card 3: Ájurvédská masáž obličeje Mukabhyanga (Nová masáž) -->
+                <div class="glass-card service-card p-6 sm:p-8 flex flex-col bg-[#FAF6F0]/90">
+                  <div class="flex-grow">
+                    <div class="flex items-center justify-between mb-4">
+                      <span class="text-xs font-semibold uppercase tracking-wider text-[#9F7635] bg-[#E8DEC8]/60 px-3 py-1 rounded-full">
+                        Ájurvédský rituál
+                      </span>
+                      <i data-lucide="sparkle" class="w-5 h-5 text-[#9F7635]"></i>
+                    </div>
+                    <h4 class="font-serif-display text-2xl text-[#251C17] font-medium mb-3">
+                      Ájurvédská masáž obličeje Mukabhyanga
+                    </h4>
+                    <p class="text-[#6C5D53] text-sm leading-relaxed mb-5">
+                      Tradiční ájurvédská olejová masáž obličeje, krku, ramen a šíje. Je to jedna z nejjemnějších ájurvédských procedur, přesto působí velmi hluboce na celé tělo, nervový systém, psychiku a kvalitu pokožky.
+                    </p>
+                    <ul class="space-y-2 text-xs sm:text-sm text-[#4A3B32] mb-6">
+                      <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-0.5 shrink-0"></i>
+                        <span>Uvolňuje čelistní kloub a mimické svaly</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-0.5 shrink-0"></i>
+                        <span>Zlepšuje spánek a hluboce zklidňuje nervový systém</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-0.5 shrink-0"></i>
+                        <span>Používám teplý olej mandlový a šípkový</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-[#4E6B5D] mt-0.5 shrink-0"></i>
+                        <span>Při působení oleje péče o celé ruce a nohy</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="pt-5 border-t border-[#E8DEC8]/80 flex flex-col gap-4 mt-auto">
+                    <div>
+                      <span class="block text-[11px] uppercase tracking-wider text-[#6C5D53] mb-1">Délka & cena</span>
+                      <div class="flex items-baseline justify-between">
+                        <span class="font-serif-display text-xl font-semibold text-[#251C17]">60 min</span>
+                        <span class="text-[#9F7635] font-serif-display text-2xl font-medium">950 Kč</span>
+                      </div>
+                    </div>
+                    <a href="#rezervace" 
+                       class="service-order-btn btn-secondary text-sm w-full justify-center py-2.5" 
+                       data-service-name="Ájurvédská masáž obličeje Mukabhyanga (60 min)">
+                      <span>Objednat</span>
+                      <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Card 4: Indická masáž hlavy Amitha -->
                 <div class="glass-card service-card p-6 sm:p-8 flex flex-col bg-[#FAF6F0]/90">
                   <div class="flex-grow">
                     <div class="flex items-center justify-between mb-4">
@@ -478,7 +529,7 @@
                       <span class="block text-[11px] uppercase tracking-wider text-[#6C5D53] mb-1">Délka & cena</span>
                       <div class="flex items-baseline justify-between">
                         <span class="font-serif-display text-xl font-semibold text-[#251C17]">30 min</span>
-                        <span class="text-[#9F7635] font-serif-display text-2xl font-medium">400 Kč</span>
+                        <span class="text-[#9F7635] font-serif-display text-2xl font-medium">550 Kč</span>
                       </div>
                     </div>
                     <a href="#rezervace" 
