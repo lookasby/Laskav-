@@ -1,5 +1,5 @@
 /**
- * Laskavě — Masážní salon (Zuzana Klazarová)
+ * Laskavě — Masážní studio (Zuzana Klazarová)
  * Interactive JS: Sticky Header, Intersection Observer, Lightbox & Mobile Menu
  */
 
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         lightboxImg.src = item.src;
         if (lightboxCaption) {
-          lightboxCaption.textContent = item.caption || 'Masážní salon Laskavě — Oáza klidu a jemnosti';
+          lightboxCaption.textContent = item.caption || 'Masážní studio Laskavě — Oáza klidu a jemnosti';
         }
         lightboxImg.style.opacity = '1';
       }, 100);
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lightboxImg.src = item.src;
     if (lightboxCaption) {
-      lightboxCaption.textContent = item.caption || 'Masážní salon Laskavě — Oáza klidu a jemnosti';
+      lightboxCaption.textContent = item.caption || 'Masážní studio Laskavě — Oáza klidu a jemnosti';
     }
     lightboxImg.style.opacity = '1';
     lightboxModal.classList.add('active');
