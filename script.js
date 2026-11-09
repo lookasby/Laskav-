@@ -4,29 +4,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Password Protection Logic ---
-  const pwOverlay = document.getElementById('password-overlay');
-  const pwForm = document.getElementById('password-form');
-  const pwInput = document.getElementById('site-password');
-  const pwError = document.getElementById('password-error');
-
-  if (pwOverlay && pwForm && pwInput && pwError) {
-    if (sessionStorage.getItem('site_unlocked') !== 'true') {
-      pwForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (pwInput.value === 'Sochorov') {
-          sessionStorage.setItem('site_unlocked', 'true');
-          document.body.style.overflow = '';
-          pwOverlay.style.opacity = '0';
-          setTimeout(() => pwOverlay.style.display = 'none', 500);
-        } else {
-          pwError.classList.remove('hidden');
-          pwInput.value = '';
-        }
-      });
-    }
-  }
-
   // 1. Initialize Lucide Icons if available
   if (window.lucide && typeof window.lucide.createIcons === 'function') {
     window.lucide.createIcons();
